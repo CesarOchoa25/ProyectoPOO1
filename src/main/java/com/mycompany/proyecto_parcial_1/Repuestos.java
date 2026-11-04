@@ -9,12 +9,19 @@ public class Repuestos {
     private String categoria; 
     private double precio;
     private int stock;
-    public final int stockMinimo = 5;
+    public final int stockMinimo = 5; //publico al ser inalterable y comun a todos los repuestos
     private Random ran = new Random();
     // Constructor 
     public  Repuestos(String producto, String categoria, double precio, int stock) {
         this.codigo = ran.nextInt(0001,9999);
         this.categoria = categoria;
+        this.producto = producto;
+        setPrecio(precio);
+        setStock(stock);
+    }
+        public  Repuestos(String product, double precio, int stock) {
+        this.codigo = ran.nextInt(0001,9999);
+        this.categoria = "Miscelaneo";
         this.producto = producto;
         setPrecio(precio);
         setStock(stock);
