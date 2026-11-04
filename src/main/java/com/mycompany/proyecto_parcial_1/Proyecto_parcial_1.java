@@ -24,6 +24,7 @@ public class Proyecto_parcial_1 {
             System.out.println("6. Calcular valor total del inventario");
             System.out.println("7. Mostrar repuestos con stock bajo");
             System.out.println("8. Salir");
+            System.out.println("====================================");
             
 
             
