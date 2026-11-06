@@ -61,7 +61,7 @@ public class Proyecto_parcial_1 {
                         if (categoria.isBlank() || producto.isBlank() || precio < 0 || stock < 0) {
                             System.out.println("Datos invalidos.");
                         } else {
-                            Repuestos nuevo = new Repuestos(
+                            Repuestos nuevo = new RepuestosRegular(
                                     producto, categoria, precio, stock);
 
                             inventario.add(nuevo);

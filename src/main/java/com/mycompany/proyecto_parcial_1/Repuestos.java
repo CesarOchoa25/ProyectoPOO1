@@ -2,7 +2,7 @@ package com.mycompany.proyecto_parcial_1;
 import java.util.Random;
 
 
-public class Repuestos {
+public abstract class Repuestos {
     //Atributos de la clase de los repuestos encapsulados
     private int codigo;
     private String producto;
