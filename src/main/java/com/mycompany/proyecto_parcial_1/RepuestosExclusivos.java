@@ -7,8 +7,12 @@ public class RepuestosExclusivos extends Repuestos implements IVerificable {
     }
 
     @Override
-    public void AjusteStock() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public String getTipo(){
+        return "Exclusivo";
     }
     
+    @Override
+    public boolean necesitaReposicion(){
+        return getStock() <= getStockMinimo();
+    } 
 }

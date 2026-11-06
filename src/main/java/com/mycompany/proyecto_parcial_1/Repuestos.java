@@ -1,35 +1,38 @@
 package com.mycompany.proyecto_parcial_1;
-import java.util.Random;
-
 
 public abstract class Repuestos {
-    //Atributos de la clase de los repuestos encapsulados
+    
+    private static int siguienteCodigo = 1001; // Esto es un contador para que no existan codigos repetidos
+    
     private int codigo;
     private String producto;
-    private String categoria; 
+    protected String categoria; 
     private double precio;
     private int stock;
-    public final int stockMinimo = 5; //publico al ser inalterable y comun a todos los repuestos
-    private Random ran = new Random();
-    // Constructor 
+    
+    private static final int stockMinimo = 5; 
+    
     public  Repuestos(String producto, String categoria, double precio, int stock) {
-        this.codigo = ran.nextInt(0001,9999);
-        this.categoria = categoria;
+        this.codigo = siguienteCodigo++;
         this.producto = producto;
+        this.categoria = categoria;
         setPrecio(precio);
         setStock(stock);
     }
-        public  Repuestos(String product, double precio, int stock) {
-        this.codigo = ran.nextInt(0001,9999);
-        this.categoria = "Miscelaneo";
+    public  Repuestos(String producto, double precio, int stock) {
+        this.codigo = siguienteCodigo++;
         this.producto = producto;
+        this.categoria = "Miscelaneo";
         setPrecio(precio);
         setStock(stock);
     }
 
-    // Métodos Getters para consultar estados
     public int getCodigo() {
         return this.codigo;
+    }
+    
+    public String getProducto() {
+        return producto;
     }
 
     public String getCategoria() {
@@ -43,31 +46,55 @@ public abstract class Repuestos {
     public int getStock() {
         return this.stock;
     }
-
-    public String getProducto() {
-        return producto;
-    }
     
+    public int getStockMinimo() {
+        return stockMinimo;
+    }
 
-    // Métodos Setters con validaciones para que no existan problemas con introducir valores nada que ver al programa y salte error por consiguiente
+    
     public void setPrecio(double precio) {
         if (precio >= 0) {
             this.precio = precio;
-        } else {
-            System.out.println("Error: El precio no puede ser negativo.");
-        }
+        } else {    
+            System.out.println("Error: Precio invalido.");
+}
     }
 
     public void setStock(int stock) {
         if (stock >= 0) {
             this.stock = stock;
         } else {
-            System.out.println("Error: El stock no puede ser un valor menor a cero.");
+            System.out.println("Error: Stock invalido");
         }
     }
+    
+    public boolean ingresarStock(int cantidad){
+        if (cantidad  > 0){
+            this.stock = stock + cantidad;
+            return true;
+        }
+        return false;
+    }
+    
+    public boolean retirarStock(int cantidad){
+        if (cantidad > 0 && cantidad <= stock) {
+            this.stock = stock - cantidad;
+            return true;
+        }
+        return false;
+    } 
+    
+    public abstract String getTipo();
 
-    // Método para mostrar por pantalla la información del repuesto (codigo, categoria, precio y stock en existencia)
     public void mostrarInfo() {
-        System.out.println("Código: " + this.codigo + " | Nombre: " + this.producto + " | Categoría: " + this.categoria + " | Precio: $" + this.precio + " | Stock: " + this.stock);
+        System.out.println("-----------------------------");
+        System.out.print(" | Codigo: " + this.codigo);
+        System.out.print(" | Nombre: " + this.producto);
+        System.out.print(" | Categoria: " + this.categoria);
+        System.out.print(" | Tipo: " + getTipo());
+        System.out.print(" | Precio: $" + this.precio);
+        System.out.print(" | Stock: " + this.stock );
+        System.out.println();
+        
     }
 }
